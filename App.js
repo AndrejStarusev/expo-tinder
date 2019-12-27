@@ -1,7 +1,8 @@
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import React from 'react'
 import { StatusBar, StyleSheet, View } from 'react-native'
-import AppNavigator from './navigation/AppNavigator'
+import AppNavigator from './navigation/AppNavigator';
+import './firebase';
 
 export default class App extends React.Component {
   state = {
