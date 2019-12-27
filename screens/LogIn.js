@@ -19,7 +19,7 @@ export default class LogIn extends React.Component {
 
         try {
             await Firebase.login(email, password);
-            this.props.navigation.navigate('Main');
+            this.props.navigation.navigate('Home');
         } catch (err) {
             this.setState({ err: err.message });
         }
