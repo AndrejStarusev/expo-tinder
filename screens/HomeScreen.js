@@ -15,11 +15,11 @@ class HomeScreen extends React.Component {
                 <Image source={ avatarPlaceholder } style={styles.avatar} />
             </View>
             <View style={styles.buttonWrap}>
-              <Button
-                title=''
+              {/* <Button
+                style={styles.buttonAdd}
               >
                 <Image source={ avatarPlaceholder } style={styles.avatar} />
-              </Button>
+              </Button> */}
             </View>
           </View>
           <View style={styles.swiperWrap}>
@@ -62,6 +62,9 @@ const styles = StyleSheet.create({
     width: 61,
     height: 61,
     display: 'flex',
+  },
+  buttonAdd: {
+    backgroundColor: '#DBF6FF',
   },
   swiperWrap: {
     position: 'relative',
