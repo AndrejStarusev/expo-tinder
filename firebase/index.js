@@ -1,6 +1,12 @@
 import firebase from 'firebase'
 import '@firebase/firestore';
 
+export const Frustrations = [
+    'Bad',
+    'Very bad',
+    'Rage',
+];
+
 // Initialize Firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyBCZOdmQzqoE-zvWX7Tdrh-thBTNeP2EiI',
@@ -20,7 +26,6 @@ const firebaseConfig = {
 
 /**
  * @typedef Problem
- * @property {string} id
  * @property {string} title
  * @property {string} description
  * @property {string} disappointment
@@ -71,6 +76,17 @@ class App {
         return docs.map(d => d.data());
     }
 
+    /**
+     * @param {string} uid
+     * @returns {Problem}
+     */
+    getProblemById = async (id) => {
+        const collection = this.db.collection('problems');
+        const spanshot = await collection.doc(id).get();
+
+        return spanshot.data();
+    }
+
     login = async (email, pass) => {
         const res = await firebase.auth().signInWithEmailAndPassword(email, pass);
         this.uid = res.user.uid;
@@ -100,6 +116,6 @@ async function test() {
     const problems = await Instance.getProblems(Instance.uid);
 }
 
-test();
+// test();
 
 export default Instance;

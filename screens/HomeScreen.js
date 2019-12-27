@@ -1,19 +1,34 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, View, Image, Button } from 'react-native'
+import { SafeAreaView, StyleSheet, View, Image, Button, TouchableOpacity } from 'react-native'
 import Swiper from 'react-native-deck-swiper'
 import { Card } from '../components/Card'
-import { HomeScreenPics } from '../constants/Pics'
+// import { HomeScreenPics } from '../constants/Pics'
 import avatarPlaceholder from '../assets/images/avatar.png';
+import Storage, { Frustrations } from '../firebase';
 
 class HomeScreen extends React.Component {
+  state = {
+    cards: [],
+  }
+
+  async componentDidMount() {
+    const problems = await Storage.getProblems();
+
+    if (problems) {
+      this.setState({ cards: problems });
+    }
+  }
+
   render() {
+    const { cards } = this.state;
+
     return (
       <SafeAreaView style={styles.mainContainer}>
         <View style={styles.container}>
           <View style={styles.headerNav}>
-            <View style={styles.avatarWrap}>
+            <TouchableOpacity style={styles.avatarWrap} onPress={() => this.props.navigation.navigate('Problem')}>
                 <Image source={ avatarPlaceholder } style={styles.avatar} />
-            </View>
+            </TouchableOpacity>
             <View style={styles.buttonWrap}>
               {/* <Button
                 style={styles.buttonAdd}
@@ -23,14 +38,22 @@ class HomeScreen extends React.Component {
             </View>
           </View>
           <View style={styles.swiperWrap}>
-            <Swiper
-              cards={HomeScreenPics}
-              renderCard={Card}
-              infinite
-              backgroundColor="white"
-              cardHorizontalMargin={0}
-              stackSize={1}
-            />
+            {
+              !!cards && (
+                <Swiper
+                  cards={cards}
+                  renderCard={Card}
+                  infinite
+                  backgroundColor="white"
+                  cardHorizontalMargin={0}
+                  stackSize={1}
+                  containerStyle={{ paddingTop: 0 }}
+                  cardStyle={{ paddingTop: 0 }}
+                  cardVerticalMargin={0}
+                  cardHorizontalMargin={0}
+                />
+              )
+            }
           </View>
         </View>
       </SafeAreaView>
@@ -44,8 +67,8 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    paddingLeft: 30,
-    paddingRight: 30,
+    // paddingLeft: 30,
+    // paddingRight: 30,
     flex: 1,
   },
   headerNav: {
@@ -68,7 +91,6 @@ const styles = StyleSheet.create({
   },
   swiperWrap: {
     position: 'relative',
-    top: 0,
     width: '100%',
     flex: 1,
     alignItems: 'flex-start',
