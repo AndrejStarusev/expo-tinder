@@ -14,8 +14,22 @@ class HomeScreen extends React.Component {
   async componentDidMount() {
     const problems = await Storage.getProblems();
 
+    console.log('___problems', problems);
+
     if (problems) {
       this.setState({ cards: problems });
+    }
+  }
+
+  afterSwipe = async (index, isProblem) => {
+    const { cards } = this.state;
+    const problem = cards[index];
+    console.log('afterSwipe', index, isProblem);
+
+    try {
+      await Storage.addAnswer({ isProblem, problemID: problem.id });
+    } catch(err) {
+      console.log('err', err.message);
     }
   }
 
@@ -30,11 +44,6 @@ class HomeScreen extends React.Component {
                 <Image source={ avatarPlaceholder } style={styles.avatar} />
             </TouchableOpacity>
             <View style={styles.buttonWrap}>
-              {/* <Button
-                style={styles.buttonAdd}
-              >
-                <Image source={ avatarPlaceholder } style={styles.avatar} />
-              </Button> */}
             </View>
           </View>
           <View style={styles.swiperWrap}>
@@ -51,6 +60,8 @@ class HomeScreen extends React.Component {
                   cardStyle={{ paddingTop: 0 }}
                   cardVerticalMargin={0}
                   cardHorizontalMargin={0}
+                  onSwipedLeft={i => this.afterSwipe(i, false)}
+                  onSwipedRight={i => this.afterSwipe(i, true)}
                 />
               )
             }

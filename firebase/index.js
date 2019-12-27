@@ -73,7 +73,7 @@ class App {
             return [];
         }
 
-        return docs.map(d => d.data());
+        return docs.map(d => ({ ...d.data(), id: d.id }));
     }
 
     /**
@@ -99,8 +99,18 @@ class App {
      * @param {Answer} answer
      */
     addAnswer = async (answer) => {
+        if (!answer || !answer.problemID) {
+            return;
+        }
+
         const collection = this.db.collection('answers');
-        await collection.doc().set(answer);
+        answer.fromUID = this.uid;
+
+        try {
+            await collection.doc().set(answer);
+        } catch (err) {
+            console.log('_____addAnswer error', err.message);
+        }
     }
 }
 
