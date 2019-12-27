@@ -22,11 +22,20 @@ export const Card = ({ pic, title, caption }) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    alignSelf: 'flex-start',
+    justifyContent: 'flex-start',
+    width: Layout.window.width - 60,
+    height: '100%',
+    borderColor: 'blue',
+    borderWidth: 1,
   },
   imageContainer: {
-    width: Layout.window.width - 30,
-    height: Layout.window.height - BOTTOM_BAR_HEIGHT * 6,
+    alignSelf: 'flex-start',
+    flex: 1,
+    width: '100%',
+    // height: Layout.window.height - BOTTOM_BAR_HEIGHT * 6,
+    height: '100%',
     borderRadius: 20,
     overflow: 'hidden', // this does magic
   },
