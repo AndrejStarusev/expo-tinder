@@ -74,6 +74,8 @@ class App {
     login = async (email, pass) => {
         const res = await firebase.auth().signInWithEmailAndPassword(email, pass);
         this.uid = res.user.uid;
+
+        return res;
     }
 
     /**
