@@ -2,13 +2,21 @@ import React from 'react'
 import { SafeAreaView, StyleSheet, View, Text, Image } from 'react-native'
 import { Button } from 'react-native-elements'
 import avatarPlaceholder from '../assets/images/avatar.png';
+import Instance from '../firebase';
 
 export default class Profile extends React.Component {
 
-    getUserProblems = async () => {
-        return problems = await Instance.getProblems(Instance.uid);
+    state = {
+        problems: [],
     }
-    
+
+    async componentDidMount() {
+        const problems = await Instance.getProblems(Instance.uid);
+        if ( problems ) {
+            this.setState({problems});
+        }
+    }
+   
     render() {
         return (
             <SafeAreaView style={styles.mainContainer}>
@@ -26,16 +34,30 @@ export default class Profile extends React.Component {
                         </View>
                         <View style={styles.statsWrap}>
                             <View style={styles.statCard}>
-                                <Text style={styles.StatLableTitle}>{this.getUserProblems.length}</Text>
+                                <Text style={styles.StatLableTitle}>{this.state.problems.length}</Text>
                                 <Text style={styles.StatLableDesc}>Problems</Text>
                             </View>    
                             <View style={styles.statCard}>
-                                <Text style={styles.StatLableTitle}>{this.getUserProblems.length}</Text>
+                                <Text style={styles.StatLableTitle}>0</Text>
                                 <Text style={styles.StatLableDesc}>Answers</Text>
                             </View>    
                         </View>
                     </View>
-                    <Text>Problem page</Text>
+                    <View style={styles.problemsWrap}>
+                        {
+                            this.state.problems.map((problem, i) => {
+                                return (
+                                    <View
+                                        key={i}
+                                        style={styles.cardProblem}
+                                    >
+                                        <Text style={styles.cardProblemTitle}>{problem.title}</Text>
+                                        <Text style={styles.cardProblemDesc}>{problem.description}</Text>
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
                 </View>
             </SafeAreaView>
         )

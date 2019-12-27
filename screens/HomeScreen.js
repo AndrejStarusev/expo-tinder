@@ -26,7 +26,7 @@ class HomeScreen extends React.Component {
       <SafeAreaView style={styles.mainContainer}>
         <View style={styles.container}>
           <View style={styles.headerNav}>
-            <TouchableOpacity style={styles.avatarWrap} onPress={() => this.props.navigation.navigate('Problem')}>
+            <TouchableOpacity style={styles.avatarWrap} onPress={() => this.props.navigation.navigate('Profile')}>
                 <Image source={ avatarPlaceholder } style={styles.avatar} />
             </TouchableOpacity>
             <View style={styles.buttonWrap}>
