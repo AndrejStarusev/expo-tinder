@@ -81,6 +81,7 @@ class App {
      * @returns {Problem}
      */
     getProblemById = async (id) => {
+        console.log('get problem', id);
         const collection = this.db.collection('problems');
         const spanshot = await collection.doc(id).get();
 
@@ -111,6 +112,23 @@ class App {
         } catch (err) {
             console.log('_____addAnswer error', err.message);
         }
+    }
+
+    getAnswersByProblem = async (problemId) => {
+        if (!problemId) {
+            return;
+        }
+
+        const collection = this.db.collection('answers');
+        const spanshot = await collection.where('problemID', '==', problemId).get();
+
+        const docs = spanshot && spanshot.docs;
+
+        if (!docs) {
+            return [];
+        }
+
+        return docs.map(d => ({ ...d.data(), id: d.id }));
     }
 }
 

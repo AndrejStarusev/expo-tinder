@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, Button } from 'react-native'
+import { SafeAreaView, StyleSheet, Button, View } from 'react-native'
 import { Text, Input } from 'react-native-elements'
 import Storage, { Frustrations } from '../firebase';
 
@@ -8,6 +8,7 @@ export default class Problem extends React.Component {
 
     state = {
         problem: null,
+        answers: [],
         error: '',
     }
 
@@ -16,9 +17,11 @@ export default class Problem extends React.Component {
         const id = navigation.getParam('id');
 
         if (id) {
-            const problem = Storage.getProblemById(id);
+            const problem = await Storage.getProblemById(id);
+            const answers = await Storage.getAnswersByProblem(id);
+            console.log('answers', answers);
             this.editable = false;
-            this.setState({ problem });
+            this.setState({ problem, answers });
         }
     }
 
@@ -38,20 +41,22 @@ export default class Problem extends React.Component {
     }
 
     render() {
-        const { problem, error } = this.state;
+        const { problem, error, answers } = this.state;
 
         return (
             <SafeAreaView>
                 <Text>Title</Text>
-                <Input onChangeText={t => this.onChange('title', t)} editable={this.editable} />
+                <Input onChangeText={t => this.onChange('title', t)} editable={this.editable} value={problem && problem.title} />
 
                 <Text>Description</Text>
-                <Input onChangeText={t => this.onChange('description', t)} editable={this.editable} />
+                <Input onChangeText={t => this.onChange('description', t)} editable={this.editable} value={problem && problem.description} />
 
-                {Frustrations.map(f => <Button key={f} title={f} onPress={prev => ({ problem: { ...prev.problem, frustration: f }})} />)}
+                {this.editable && Frustrations.map(f => <Button key={f} title={f} onPress={prev => ({ problem: { ...prev.problem, frustration: f }})} />)}
 
                 {this.editable && <Button title="Save" onPress={this.createProblem} />}
                 {!!error && <Text>{error}</Text>}
+
+                {!!answers && answers.map((a, i) => <Text key={i}>{a.isProblem.toString()}</Text>) }
             </SafeAreaView>
         )
     }

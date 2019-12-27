@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, View, Text, Image } from 'react-native'
+import { SafeAreaView, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
 import { Button } from 'react-native-elements'
 import avatarPlaceholder from '../assets/images/avatar.png';
 import Instance from '../firebase';
@@ -47,13 +47,17 @@ export default class Profile extends React.Component {
                         {
                             this.state.problems.map((problem, i) => {
                                 return (
-                                    <View
+                                    <TouchableOpacity
                                         key={i}
                                         style={styles.cardProblem}
+                                        onPress={() => this.props.navigation.navigate(
+                                            'Problem',
+                                            { id: problem.id }
+                                        )}
                                     >
                                         <Text style={styles.cardProblemTitle}>{problem.title}</Text>
                                         <Text style={styles.cardProblemDesc}>{problem.description}</Text>
-                                    </View>
+                                    </TouchableOpacity>
                                 )
                             })
                         }
@@ -91,5 +95,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         display: 'flex',
+    },
+    card: {
+        backgroundColor: 'gray',
     },
 });
