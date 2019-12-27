@@ -5,7 +5,7 @@ import Firebase from '../firebase';
 
 export default class LogIn extends React.Component {
     state = {
-        email: 'andrejstarusev@gmail.com',
+        email: '',
         password: '',
         err: '',
     }
@@ -32,7 +32,7 @@ export default class LogIn extends React.Component {
                 <Text>Log In</Text>
 
                 <Text>Email</Text>
-                <Input onChangeText={text => this.setState({ email: text })} autoCapitalize="none" value="andrejstarusev@gmail.com" />
+                <Input onChangeText={text => this.setState({ email: text })} autoCapitalize="none" />
                 
                 <Text>Password</Text>
                 <Input onChangeText={text => this.setState({ password: text })} autoCapitalize="none" />
