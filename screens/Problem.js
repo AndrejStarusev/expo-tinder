@@ -18,7 +18,7 @@ function BTN(props) {
     return (
         <TouchableOpacity onPress={props.onPress} style={[styles.dBtn, props.selected && styles.selectedButton ]}>
             <Image source={getImageByDisappointment(props.disappointment)} style={styles.btnImg} />
-            <Text>{props.disappointment}</Text>
+            <Text style={styles.btnLbl}>{props.disappointment}</Text>
         </TouchableOpacity>
     );
 }
@@ -30,7 +30,6 @@ export default class Problem extends React.Component {
         problem: {
             disappointment: 'Easy',
         },
-        answers: [],
         error: '',
     }
 
@@ -40,10 +39,9 @@ export default class Problem extends React.Component {
 
         if (id) {
             const problem = await Storage.getProblemById(id);
-            const answers = await Storage.getAnswersByProblem(id);
 
             this.editable = false;
-            this.setState({ problem, answers });
+            this.setState({ problem });
         }
     }
 
@@ -66,59 +64,59 @@ export default class Problem extends React.Component {
         const { problem, error, answers } = this.state;
 
         return (
-            <Page withNotch notchOffset={-65}>
-                <Container>
+            <Page withNotch notchOffset={-85} style={{backgroundColor: Colors.white}}>
+                <Container style={styles.container}>
                     <View style={styles.headerNav}>
                         <View style={styles.plusWrap}></View>
 
                         <Image source={LOGO} style={styles.logo} />
 
-                        <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
+                        <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.navigate('Home')}>
                             <Image source={Plus} style={styles.plus} />
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={[Typography.InputLable]}>Title</Text>
-                    <Input
-                        onChangeText={t => this.onChange('title', t)}
-                        editable={this.editable}
-                        value={problem && problem.title}
-                        style={Typography.h2}
-                        placeholder="Your problem title"
-                    />
+                    <View style={styles.innerProblem}>
+                        <Text style={[Typography.InputLable]}>Title</Text>
+                        <Input
+                            onChangeText={t => this.onChange('title', t)}
+                            editable={this.editable}
+                            value={problem && problem.title}
+                            style={Typography.h2}
+                            placeholder="Your problem title"
+                        />
 
-                    <Text style={[Typography.InputLable, { marginTop: 32 }]}>Problem description</Text>
-                    <Input
-                        onChangeText={t => this.onChange('description', t)}
-                        editable={this.editable}
-                        value={problem && problem.description}
-                        placeholder="Describe your problem"
-                        style={styles.mb40}
-                    />
+                        <Text style={[Typography.InputLable, { marginTop: 32 }]}>Problem description</Text>
+                        <Input
+                            onChangeText={t => this.onChange('description', t)}
+                            editable={this.editable}
+                            value={problem && problem.description}
+                            placeholder="Describe your problem"
+                            style={styles.mb40}
+                        />
 
-                    <Text style={[Typography.InputLable]}>Dissapoint level</Text>
+                        <Text style={[Typography.InputLable]}>Dissapoint level</Text>
 
-                    <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
-                        {Frustrations.map(f => (
-                            <BTN
-                                key={f}
-                                disappointment={f}
-                                onPress={() => this.setState(prev => ({ problem: { ...prev.problem, disappointment: f } }))}
-                                selected={problem && (problem.disappointment === f)}
-                            />
-                        ))}
+                        <View style={{ flexDirection: 'row', width: '100%', justifyContent: 'space-between' }}>
+                            {Frustrations.map(f => (
+                                <BTN
+                                    key={f}
+                                    disappointment={f}
+                                    onPress={() => this.setState(prev => ({ problem: { ...prev.problem, disappointment: f } }))}
+                                    selected={problem && (problem.disappointment === f)}
+                                />
+                            ))}
+                        </View>
                     </View>
 
                     <Button
-                        onPress={this.tryToLogin}
+                        onPress={this.createProblem}
                         title="share problem"
                         buttonStyle={[CommonStyles.button, styles.button]}
                         titleStyle={[Typography.button]}
                     />
 
                     {!!error && <Text>{error}</Text>}
-
-                    {!!answers && answers.map((a, i) => <Text key={i}>{a.isProblem.toString()}</Text>) }
                 </Container>
             </Page>
         )
@@ -133,6 +131,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.bgProfile,
     },
     container: {
+        position: 'relative',
         width: '100%',
         paddingLeft: 30,
         paddingRight: 30,
@@ -171,6 +170,9 @@ const styles = StyleSheet.create({
         height: 16,
         transform: [{ rotate: '45deg' }],
     },
+    mb32: {
+        marginBottom: 10,
+    },
     mb40: {
         marginBottom: 40,
     },
@@ -191,6 +193,12 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         height: 41,
         width: 53,
+    },
+    btnLbl: {
+        marginBottom: 11,
+        fontSize: 17,
+        lineHeight: 17,
+        textTransform: "uppercase",
     },
     button: {
         marginTop: 36,
