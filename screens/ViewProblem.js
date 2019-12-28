@@ -1,6 +1,7 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, Button, View, TouchableOpacity, Image } from 'react-native'
 import { Text, Input } from 'react-native-elements'
+import Page from '../components/Page';
 import Storage, { Frustrations } from '../firebase';
 import { getImageByDisappointment } from '../helpers/problem';
 import Colors from '../constants/Colors';
@@ -35,7 +36,7 @@ export default class ViewProblem extends React.Component {
         const { problem, answers } = this.state;
 
         return (
-            <View style={styles.mainContainer}>
+            <Page style={styles.mainContainer} withBg>
                 <View style={styles.problemWrap}>
                     <View style={styles.container}>
                         <View style={styles.headerNav}>
@@ -50,13 +51,13 @@ export default class ViewProblem extends React.Component {
                             </View>
                         </View>
                         <View style={styles.problemBlock}>
-                            {/* <Image source={getImageByDisappointment(problem.disappointment)} style={styles.image} /> */}
+                            {problem && <Image source={getImageByDisappointment(problem.disappointment)} style={styles.image} />}
                             <Text style={[Typography.h2, styles.heading]}>{problem && problem.title}</Text>
                             <Text style={[Typography.p]}>{problem && problem.description}</Text>
                         </View>
                     </View>
                 </View>
-            </View>
+            </Page>
         )
     }
 }
@@ -87,8 +88,8 @@ const styles = StyleSheet.create({
         borderRadius: 44 / 2,
     },
     backIcon: {
-        width: 24,
-        height: 24,
+        width: 14,
+        height: 14,
     },
     logo: {
         width: 101,
@@ -110,34 +111,24 @@ const styles = StyleSheet.create({
         width: Layout.window.width * 0.83,
         borderRadius: 7,
         backgroundColor: Colors.white,
-        height: Layout.window.height * 0.65,
+        height: Layout.window.height * 0.76,
         borderWidth: 1,
         borderColor: Colors.borderGray,
         shadowColor: 'rgba(50, 50, 71, 0.08)',
-        shadowOffset: { width: 10, height: 10 },
+        shadowOffset: { width: 20, height: 10 },
         shadowRadius: 7,
         elevation: 5,
         padding: 32,
         zIndex: 2,
     },
     image: {
-        height: 106,
-        width: 137,
-        marginBottom: 40,
+        height: 175,
+        width: 237,
+        marginBottom: 43,
         alignSelf: 'center',
     },
     heading: {
         marginBottom: 16,
         color: Colors.blackText,
-    },
-    human: {
-        marginRight: 12,
-        height: 22,
-        width: 17,
-    },
-    postTime: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 8,
     },
 });

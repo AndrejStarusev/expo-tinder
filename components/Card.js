@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         width: Layout.window.width * 0.83,
         borderRadius: 7,
         backgroundColor: Colors.white,
-        height: Layout.window.height * 0.65,
+        height: Layout.window.height * 0.6,
         padding: 32,
     },
     image: {

@@ -52,7 +52,7 @@ class HomeScreen extends React.Component {
                 <Container style={styles.container}>
                     <View style={styles.headerNav}>
                         <TouchableOpacity style={styles.avatarWrap} onPress={() => this.props.navigation.navigate('Profile')}>
-                            <Image source={Arrow} style={styles.avatar} />
+                            <Image source={avatarPlaceholder} style={styles.avatar} />
                         </TouchableOpacity>
 
                         <Image source={LOGO} style={styles.logo} />
@@ -114,14 +114,14 @@ const styles = StyleSheet.create({
     avatarWrap: {
         height: 43,
         width: 43,
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         borderRadius: 43 / 2,
         justifyContent: 'center',
         alignItems: 'center',
     },
     avatar: {
-        width: 24,
-        height: 24,
+        width: 43,
+        height: 43,
         display: 'flex',
     },
     logo: {

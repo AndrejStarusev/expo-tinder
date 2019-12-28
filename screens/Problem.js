@@ -155,8 +155,8 @@ const styles = StyleSheet.create({
         borderRadius: 44 / 2,
     },
     backIcon: {
-        width: 24,
-        height: 24,
+        width: 14,
+        height: 14,
     },
     logo: {
         width: 101,
