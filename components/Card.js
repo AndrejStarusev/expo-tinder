@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
         padding: 32,
     },
     image: {
-        height: 106,
-        width: 137,
+        height: 175,
+        width: 237,
         marginBottom: 40,
         alignSelf: 'center',
     },

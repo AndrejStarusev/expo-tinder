@@ -10,8 +10,9 @@ import Colors from '../constants/Colors';
 import Layout from '../constants/Layout'
 
 import avatarPlaceholder from '../assets/images/avatar.png';
-import LOGO from '../assets/images/logo-gray.png';
+import LOGO from '../assets/images/logo-purple.png';
 import Plus from '../assets/images/plus-purple.png';
+import Arrow from '../assets/images/left-arrow.png';
 import UP from '../assets/images/thumbs-up.png';
 import DOWN from '../assets/images/thumbs-down.png';
 
@@ -50,7 +51,7 @@ class HomeScreen extends React.Component {
                 <Container style={styles.container}>
                     <View style={styles.headerNav}>
                         <TouchableOpacity style={styles.avatarWrap} onPress={() => this.props.navigation.navigate('Profile')}>
-                            <Image source={avatarPlaceholder} style={styles.avatar} />
+                            <Image source={Arrow} style={styles.avatar} />
                         </TouchableOpacity>
 
                         <Image source={LOGO} style={styles.logo} />
@@ -111,10 +112,14 @@ const styles = StyleSheet.create({
     avatarWrap: {
         height: 43,
         width: 43,
+        backgroundColor: Colors.white,
+        borderRadius: 43 / 2,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     avatar: {
-        width: 43,
-        height: 43,
+        width: 24,
+        height: 24,
         display: 'flex',
     },
     logo: {
@@ -148,7 +153,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: 241,
         justifyContent: 'space-between',
-        marginBottom: 20,
+        marginBottom: 48,
     },
     btn: {
         height: 87,
