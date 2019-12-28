@@ -14,7 +14,7 @@ export default {
   blue: '#4DA5FF',
   grayBG: '#EFF3F7',
   grayText: '#97A0A9',
-  blackText: '#25282B',
+  blackText: '#151522',
   purpleText: '#D3D8FD',
   white: '#fff',
   purple: '#787EF9',

@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     headerNav: {
         width: '100%',
-        marginTop: 68,
+        marginTop: 49,
         marginBottom: 40,
         justifyContent: 'space-between',
         alignItems: 'center',

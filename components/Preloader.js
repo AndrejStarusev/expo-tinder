@@ -1,13 +1,16 @@
 import React from 'react'
-import { Platform, StyleSheet, View, Text } from 'react-native'
+import { Platform, StyleSheet, View, Text, Image } from 'react-native'
 import Layout from '../constants/Layout'
+
+import preloaderImage from '../assets/images/preloader.png';
 
 const BOTTOM_BAR_HEIGHT = !Platform.isPad ? 29 : 49 // found from https://stackoverflow.com/a/50318831/6141587
 
 export default () => (
     <View style={styles.container}>
         <View style={styles.layer} />
-        <Text>Loading...</Text>
+        <Image source={preloaderImage} style={styles.preloaderImage} />
+        {/* <Text>Loading...</Text> */}
     </View>
 )
 
@@ -19,7 +22,7 @@ const styles = StyleSheet.create({
         width: Layout.window.width,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent',
+        backgroundColor: 'rgba(203, 178, 245, 0.5)',
     },
     layer: {
         height: Layout.window.height,
@@ -28,5 +31,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         left: 0,
+    },
+    preloaderImage: {
+        width: 157,
+        height: 156,
     },
 })

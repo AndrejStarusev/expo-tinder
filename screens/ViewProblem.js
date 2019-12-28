@@ -8,11 +8,11 @@ import Layout from '../constants/Layout';
 import Typography from '../styles/typography';
 
 import backIcon from '../assets/images/back.png';
+import bgMain from '../assets/images/bg-main.png';
 import LOGO from '../assets/images/logo-gray.png';
 import Plus from '../assets/images/plus-purple.png';
-import Human from '../assets/images/human-icon.png';
 
-export default class Problem extends React.Component {
+export default class ViewProblem extends React.Component {
 
     state = {
         problem: null,
@@ -22,8 +22,6 @@ export default class Problem extends React.Component {
     async componentDidMount() {
         const { navigation } = this.props;
         const id = navigation.getParam('id');
-
-        logger.log(id);
 
         if (id) {
             const problem = await Storage.getProblemById(id);
@@ -67,9 +65,6 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
     },
-    profileWrap: {
-        backgroundColor: Colors.bgProfile,
-    },
     container: {
         width: '100%',
         paddingLeft: 30,
@@ -77,7 +72,7 @@ const styles = StyleSheet.create({
     },
     headerNav: {
         width: '100%',
-        marginTop: 68,
+        marginTop: 49,
         marginBottom: 40,
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -118,11 +113,12 @@ const styles = StyleSheet.create({
         height: Layout.window.height * 0.65,
         borderWidth: 1,
         borderColor: Colors.borderGray,
-        shadowColor: 'rgba(0, 0, 0, 0.05)',
-        shadowOffset: { width: 2, height: 2 },
+        shadowColor: 'rgba(50, 50, 71, 0.08)',
+        shadowOffset: { width: 10, height: 10 },
         shadowRadius: 7,
         elevation: 5,
         padding: 32,
+        zIndex: 2,
     },
     image: {
         height: 106,
@@ -132,6 +128,7 @@ const styles = StyleSheet.create({
     },
     heading: {
         marginBottom: 16,
+        color: Colors.blackText,
     },
     human: {
         marginRight: 12,
