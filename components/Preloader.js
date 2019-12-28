@@ -13,6 +13,8 @@ export default () => (
 
 const styles = StyleSheet.create({
     container: {
+        position: 'absolute',
+        zIndex: 100,
         height: Layout.window.height,
         width: Layout.window.width,
         justifyContent: 'center',
