@@ -1,7 +1,15 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, TextInput } from 'react-native'
-import { Input, Button, Text } from 'react-native-elements'
+import { StyleSheet, View, Image, TextInput } from 'react-native'
+import { Button, Text } from 'react-native-elements'
 import Firebase from '../firebase';
+import CommonStyles from '../styles/common';
+import Typography from '../styles/typography';
+import Container from '../components/Container';
+import Page from '../components/Page';
+import Input from '../components/Input';
+
+import LOGO from '../assets/images/logo-black.png';
+import Colors from '../constants/Colors';
 
 export default class LogIn extends React.Component {
     state = {
@@ -28,19 +36,43 @@ export default class LogIn extends React.Component {
     render() {
         const { err } = this.state;
         return (
-            <SafeAreaView>
-                <Text>Log In</Text>
+            <Page style={styles.page}>
+                <Container style={styles.container}>
+                    <View>
+                        <Image source={ LOGO } style={styles.logo} />
+                        <Text style={[Typography.p]}>let's solve problems all together!</Text>
+                    </View>
 
-                <Text>Email</Text>
-                <Input onChangeText={text => this.setState({ email: text })} autoCapitalize="none" />
-                
-                <Text>Password</Text>
-                <Input onChangeText={text => this.setState({ password: text })} autoCapitalize="none" />
+                    <View style={{ position: 'relative', width: '100%', marginBottom: 150 }}>
+                        <Text style={[Typography.InputLable]}>Email</Text>
+                        <Input
+                            onChangeText={text => this.setState({ email: text })}
+                            autoCapitalize="none"
+                            style={[CommonStyles.Input, styles.mb24]}
+                            textContentType="emailAddress"
+                        />
+                        
+                        <Text style={[Typography.InputLable]}>Password</Text>
+                        <Input
+                            onChangeText={text => this.setState({ password: text })}
+                            autoCapitalize="none"
+                            style={[CommonStyles.Input, styles.mb7]}
+                            textContentType="password"
+                            secureTextEntry
+                        />
+                        {!!err && <Text>{err}</Text>}
+                        <Text style={[Typography.p, styles.forgot]}>Forgot password?</Text>
+                        <Button
+                            onPress={this.tryToLogin}
+                            title="Log In"
+                            buttonStyle={[CommonStyles.button, styles.button]}
+                            titleStyle={[Typography.button]}
+                        />
+                    </View>
 
-                {!!err && <Text>{err}</Text>}
-
-                <Button onPress={this.tryToLogin} title="Log In" />
-            </SafeAreaView>
+                    <Text style={Typography.p}>Don’t have an account? <Text style={{ color: Colors.blue }}>Sign Up</Text></Text>
+                </Container>
+            </Page>
         )
     }
 }
@@ -56,5 +88,34 @@ const styles = StyleSheet.create({
   input: {
     borderColor: 'black',
     borderWidth: 1,
+  },
+  err: {
+      position: 'absolute'
+  },
+  page: {
+      flex: 1,
+      paddingTop: 30,
+  },
+  container: {
+      flex: 1,
+      justifyContent: 'space-between',
+      alignItems: 'center',
+  },
+  mb24: {
+      marginBottom: 24,
+  },
+  mb7: {
+      marginBottom: 7,
+  },
+  button: {
+      marginTop: 40,
+  },
+  forgot: {
+      alignSelf: 'flex-end',
+  },
+  logo: {
+      marginTop: 30,
+      width: 225,
+      height: 52,
   }
 });

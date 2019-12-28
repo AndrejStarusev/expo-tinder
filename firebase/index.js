@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 import '@firebase/firestore';
+import { observable } from 'mobx';
 
 export const Frustrations = [
     'Bad',
@@ -40,6 +41,9 @@ class App {
 
     problems = null;
 
+    @observable
+    loading = false;
+
     constructor() {
         this.init();
     }
@@ -53,8 +57,13 @@ class App {
      * @param {Partial<Problem>} problem
      */
     createProblem = async (problem) => {
-        const collection = this.db.collection('problems');
-        await collection.doc().set({ ...problem, creatorUID: this.uid });
+        try {
+            this.loading = true;
+            const collection = this.db.collection('problems');
+            await collection.doc().set({ ...problem, creatorUID: this.uid });
+        } finally {
+            this.loading = false;
+        }
     }
 
     /**
@@ -62,18 +71,23 @@ class App {
      * @returns {Problem[]}
      */
     getProblems = async (uid) => {
-        const collection = this.db.collection('problems');
-        const spanshot = uid
-            ? await collection.where('creatorUID', '==', uid).get()
-            : await collection.get();
-
-        const docs = spanshot && spanshot.docs;
-
-        if (!docs) {
-            return [];
+        try {
+            this.loading = true;
+            const collection = this.db.collection('problems');
+            const spanshot = uid
+                ? await collection.where('creatorUID', '==', uid).get()
+                : await collection.get();
+    
+            const docs = spanshot && spanshot.docs;
+    
+            if (!docs) {
+                return [];
+            }
+    
+            return docs.map(d => ({ ...d.data(), id: d.id }));
+        } finally {
+            this.loading = false;
         }
-
-        return docs.map(d => ({ ...d.data(), id: d.id }));
     }
 
     /**
@@ -81,18 +95,28 @@ class App {
      * @returns {Problem}
      */
     getProblemById = async (id) => {
-        console.log('get problem', id);
-        const collection = this.db.collection('problems');
-        const spanshot = await collection.doc(id).get();
-
-        return spanshot.data();
+        this.loading = true;
+        try {
+            const collection = this.db.collection('problems');
+            const spanshot = await collection.doc(id).get();
+    
+            return spanshot.data();
+        } finally {
+            this.loading = false;
+        }
     }
 
     login = async (email, pass) => {
-        const res = await firebase.auth().signInWithEmailAndPassword(email, pass);
-        this.uid = res.user.uid;
+        this.loading = true;
 
-        return res;
+        try {
+            const res = await firebase.auth().signInWithEmailAndPassword(email, pass);
+            this.uid = res.user.uid;
+    
+            return res;
+        } finally {
+            this.loading = false;
+        }
     }
 
     /**
@@ -104,6 +128,8 @@ class App {
             return;
         }
 
+        this.loading = true;
+
         const collection = this.db.collection('answers');
         answer.fromUID = this.uid;
 
@@ -111,6 +137,8 @@ class App {
             await collection.doc().set(answer);
         } catch (err) {
             console.log('_____addAnswer error', err.message);
+        } finally {
+            this.loading = false;
         }
     }
 
@@ -119,16 +147,21 @@ class App {
             return;
         }
 
-        const collection = this.db.collection('answers');
-        const spanshot = await collection.where('problemID', '==', problemId).get();
-
-        const docs = spanshot && spanshot.docs;
-
-        if (!docs) {
-            return [];
+        this.loading = true;
+        try {
+            const collection = this.db.collection('answers');
+            const spanshot = await collection.where('problemID', '==', problemId).get();
+    
+            const docs = spanshot && spanshot.docs;
+    
+            if (!docs) {
+                return [];
+            }
+    
+            return docs.map(d => ({ ...d.data(), id: d.id }));
+        } finally {
+            this.loading = false;
         }
-
-        return docs.map(d => ({ ...d.data(), id: d.id }));
     }
 }
 

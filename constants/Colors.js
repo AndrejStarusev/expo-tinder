@@ -11,4 +11,9 @@ export default {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
+  blue: '#4DA5FF',
+  grayBG: '#EFF3F7',
+  grayText: '#97A0A9',
+  blackText: '#25282B',
+  white: '#fff',
 };

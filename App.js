@@ -1,9 +1,13 @@
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import React from 'react'
 import { StatusBar, StyleSheet, View } from 'react-native'
+import { observer } from 'mobx-react';
 import AppNavigator from './navigation/AppNavigator';
-import './firebase';
+import Storage from './firebase';
+import Preloader from './components/Preloader';
 
+
+@observer
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
@@ -22,6 +26,7 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
           <StatusBar hidden />
+          {Storage.loading && <Preloader />}
           <AppNavigator />
         </View>
       )
