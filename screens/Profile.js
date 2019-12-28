@@ -5,7 +5,7 @@ import Instance from '../firebase';
 import Colors from '../constants/Colors';
 
 import backIcon from '../assets/images/back.png';
-import LOGO from '../assets/images/logo-gray.png';
+import LOGO from '../assets/images/logo-black.png';
 import Plus from '../assets/images/plus-purple.png';
 
 export default class Profile extends React.Component {

@@ -11,8 +11,7 @@ import Container from '../components/Container';
 import Input from '../components/Input';
 import { getImageByDisappointment } from '../helpers/problem';
 
-import backIcon from '../assets/images/back.png';
-import LOGO from '../assets/images/logo-gray.png';
+import LOGO from '../assets/images/logo-black.png';
 import Plus from '../assets/images/plus-purple.png';
 
 function BTN(props) {
@@ -67,16 +66,16 @@ export default class Problem extends React.Component {
         const { problem, error, answers } = this.state;
 
         return (
-            <Page style={{ backgroundColor: '#fff' }} withNotch notchOffset={-65}>
+            <Page withNotch notchOffset={-65}>
                 <Container>
                     <View style={styles.headerNav}>
-                        <TouchableOpacity style={styles.btnBack}>
-                            <Image source={backIcon} style={styles.backIcon} />
-                        </TouchableOpacity>
+                        <View style={styles.plusWrap}></View>
 
                         <Image source={LOGO} style={styles.logo} />
 
-                        <View style={styles.plusWrap}></View>
+                        <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
+                            <Image source={Plus} style={styles.plus} />
+                        </TouchableOpacity>
                     </View>
 
                     <Text style={[Typography.InputLable]}>Title</Text>
@@ -140,8 +139,8 @@ const styles = StyleSheet.create({
     },
     headerNav: {
         width: '100%',
-        marginTop: 68,
-        marginBottom: 36,
+        marginTop: 49,
+        marginBottom: 91,
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
@@ -159,6 +158,7 @@ const styles = StyleSheet.create({
         height: 14,
     },
     logo: {
+        alignSelf: "center",
         width: 101,
         height: 23,
     },

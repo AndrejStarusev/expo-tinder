@@ -10,7 +10,7 @@ import Colors from '../constants/Colors';
 import Layout from '../constants/Layout'
 
 import avatarPlaceholder from '../assets/images/avatar.png';
-import LOGO from '../assets/images/logo-purple.png';
+import LOGO from '../assets/images/logo-black.png';
 import Plus from '../assets/images/plus-purple.png';
 import Arrow from '../assets/images/left-arrow.png';
 import UP from '../assets/images/thumbs-up.png';

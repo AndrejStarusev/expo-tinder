@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 import Colors from '../constants/Colors';
 
 const p = {
-    // fontFamily: 'Proxima Nova Soft',
+    // fontFamily: 'SF Pro Text',
     fontStyle: 'normal',
     fontWeight: '600',
     fontSize: 14,
@@ -12,7 +12,7 @@ const p = {
 
 export default StyleSheet.create({
     InputLable: {
-        // fontFamily: 'Proxima Nova Soft',
+        // fontFamily: 'SF Pro Text',
         fontStyle: 'normal',
         fontWeight: '600',
         fontSize: 16,
@@ -26,7 +26,7 @@ export default StyleSheet.create({
         color: Colors.purpleText,
     },
     button: {
-        // fontFamily: 'Proxima Nova Soft',
+        // fontFamily: 'SF Pro Text',
         textTransform: 'uppercase',
         fontStyle: 'normal',
         fontWeight: '600',

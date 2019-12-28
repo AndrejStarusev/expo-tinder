@@ -11,7 +11,7 @@ import CartBlock from '../components/CartBlock';
 
 import backIcon from '../assets/images/back.png';
 import bgMain from '../assets/images/bg-main.png';
-import LOGO from '../assets/images/logo-gray.png';
+import LOGO from '../assets/images/logo-black.png';
 import Plus from '../assets/images/plus-purple.png';
 
 export default class ViewProblem extends React.Component {

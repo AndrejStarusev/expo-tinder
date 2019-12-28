@@ -16,6 +16,6 @@ export default createAppContainer(createSwitchNavigator(
     ViewProblem: ViewProblem,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Problem',
   },
 ));
