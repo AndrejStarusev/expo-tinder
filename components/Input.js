@@ -13,7 +13,7 @@ export default class Input extends React.Component {
         const { props } = this;
 
         const style = focused
-            ? [{ ...CommonStyles.Input, borderColor: Colors.blue }, props.style]
+            ? [{ ...CommonStyles.Input, borderColor: Colors.purple }, props.style]
             : [CommonStyles.Input, props.style];
 
         return (

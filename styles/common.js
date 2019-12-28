@@ -15,5 +15,12 @@ export default StyleSheet.create({
         backgroundColor: Colors.purple,
         borderRadius: 25,
         height: 50,
+    },
+    shadow: {
+        shadowColor: 'rgba(0, 0, 0, 0.05)',
+        shadowOffset: { width: 2, height: 2 },
+        borderWidth: 1,
+        borderColor: Colors.borderGray,
+        borderRadius: 44 / 2,
     }
 });

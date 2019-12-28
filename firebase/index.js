@@ -3,9 +3,9 @@ import '@firebase/firestore';
 import { observable } from 'mobx';
 
 export const Frustrations = [
-    'Bad',
-    'Very bad',
-    'Rage',
+    'Easy',
+    'Medium',
+    'Hard',
 ];
 
 // Initialize Firebase

@@ -1,6 +1,5 @@
 import React from 'react'
 import { SafeAreaView, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
-import { Button } from 'react-native-elements'
 import avatarPlaceholder from '../assets/images/avatar.png';
 import Instance from '../firebase';
 import Colors from '../constants/Colors';
