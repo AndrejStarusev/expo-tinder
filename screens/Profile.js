@@ -24,7 +24,7 @@ export default class Profile extends React.Component {
    
     render() {
         return (
-            <SafeAreaView style={styles.mainContainer}>
+            <View style={styles.mainContainer}>
                 <View style={styles.profileWrap}>
                     <View style={styles.container}>
                         <View style={styles.headerNav}>
@@ -38,7 +38,7 @@ export default class Profile extends React.Component {
                                 <Image source={Plus} style={styles.plus} />
                             </View>
                         </View>
-                        <View style={styles.profileWrap}>
+                        <View style={styles.profileBlock}>
                             <View style={styles.avatarWrap}>
                                 <Image source={ avatarPlaceholder } style={styles.avatar} />
                             </View>
@@ -64,7 +64,7 @@ export default class Profile extends React.Component {
                                         key={i}
                                         style={styles.cardProblem}
                                         onPress={() => this.props.navigation.navigate(
-                                            'Problem',
+                                            'ViewProblem',
                                             { id: problem.id }
                                         )}
                                     >
@@ -76,7 +76,7 @@ export default class Profile extends React.Component {
                         }
                     </View>
                 </View>
-            </SafeAreaView>
+            </View>
         )
     }
 }
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     headerNav: {
         width: '100%',
         marginTop: 68,
-        marginBottom: 36,
+        marginBottom: 40,
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
@@ -129,10 +129,15 @@ const styles = StyleSheet.create({
         width: 16,
         height: 16,
     },
+    profileBlock: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     avatarWrap: {
         height: 121,
         width: 121,
         alignItems: 'center',
+        marginBottom: 40, 
     },
     avatar:{
         width: '100%',

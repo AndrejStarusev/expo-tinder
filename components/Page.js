@@ -4,9 +4,9 @@ import Layout from '../constants/Layout'
 import Colors from '../constants/Colors';
 
 export default (props) => (
-    <SafeAreaView style={[styles.page, props.style]}>
+    <View style={[styles.page, props.style]}>
         {props.children}
-    </SafeAreaView>
+    </View>
 )
 
 const styles = StyleSheet.create({

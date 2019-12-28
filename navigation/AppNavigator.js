@@ -5,6 +5,7 @@ import LogIn from '../screens/LogIn'
 import HomeScreen from '../screens/HomeScreen'
 import Problem from '../screens/Problem'
 import Profile from '../screens/Profile'
+import ViewProblem from '../screens/ViewProblem'
 
 export default createAppContainer(createSwitchNavigator(
   {
@@ -12,6 +13,7 @@ export default createAppContainer(createSwitchNavigator(
     Home: HomeScreen,
     Problem: Problem,
     Profile: Profile,
+    ViewProblem: ViewProblem,
   },
   {
     initialRouteName: 'Profile',
