@@ -38,9 +38,9 @@ export default class LogIn extends React.Component {
         return (
             <Page style={styles.page}>
                 <Container style={styles.container}>
-                    <View>
+                    <View style={styles.logoWrap}>
                         <Image source={ LOGO } style={styles.logo} />
-                        <Text style={[Typography.p]}>let's solve problems all together!</Text>
+                        <Text style={[Typography.p, styles.subtitle]}>let's solve problems all together!</Text>
                     </View>
 
                     <View style={{ position: 'relative', width: '100%', marginBottom: 150 }}>
@@ -48,17 +48,19 @@ export default class LogIn extends React.Component {
                         <Input
                             onChangeText={text => this.setState({ email: text })}
                             autoCapitalize="none"
-                            style={[CommonStyles.Input, styles.mb24]}
+                            style={styles.mb24}
                             textContentType="emailAddress"
+                            placeholder="hello@zajno.com"
                         />
                         
                         <Text style={[Typography.InputLable]}>Password</Text>
                         <Input
                             onChangeText={text => this.setState({ password: text })}
                             autoCapitalize="none"
-                            style={[CommonStyles.Input, styles.mb7]}
+                            style={styles.mb7}
                             textContentType="password"
                             secureTextEntry
+                            placeholder="Password"
                         />
                         {!!err && <Text>{err}</Text>}
                         <Text style={[Typography.p, styles.forgot]}>Forgot password?</Text>
@@ -70,7 +72,7 @@ export default class LogIn extends React.Component {
                         />
                     </View>
 
-                    <Text style={Typography.p}>Don’t have an account? <Text style={{ color: Colors.blue }}>Sign Up</Text></Text>
+                    <Text style={Typography.p}>Don’t have an account? <Text style={{ color: Colors.purple }}>Sign Up</Text></Text>
                 </Container>
             </Page>
         )
@@ -112,10 +114,19 @@ const styles = StyleSheet.create({
   },
   forgot: {
       alignSelf: 'flex-end',
+      fontWeight: '300',
   },
   logo: {
       marginTop: 30,
       width: 225,
       height: 52,
+  },
+  logoWrap: {
+      alignItems: 'center',
+  },
+  subtitle: {
+      fontWeight: '300',
+      textTransform: 'uppercase',
+      marginTop: 12,
   }
 });
