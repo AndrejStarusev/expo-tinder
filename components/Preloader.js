@@ -10,7 +10,7 @@ export default () => (
     <View style={styles.container}>
         <View style={styles.layer} />
         <Image source={preloaderImage} style={styles.preloaderImage} />
-        {/* <Text>Loading...</Text> */}
+        <Text style={styles.text}>Loading...</Text>
     </View>
 )
 
@@ -35,5 +35,12 @@ const styles = StyleSheet.create({
     preloaderImage: {
         width: 157,
         height: 156,
+        marginBottom: 20,
+    },
+    text: {
+        marginBottom: 11,
+        fontSize: 17,
+        lineHeight: 17,
+        textTransform: "uppercase",
     },
 })
