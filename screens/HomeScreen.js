@@ -12,6 +12,8 @@ import Layout from '../constants/Layout'
 import avatarPlaceholder from '../assets/images/avatar.png';
 import LOGO from '../assets/images/logo-gray.png';
 import Plus from '../assets/images/plus-purple.png';
+import UP from '../assets/images/thumbs-up.png';
+import DOWN from '../assets/images/thumbs-down.png';
 
 class HomeScreen extends React.Component {
     state = {
@@ -76,9 +78,14 @@ class HomeScreen extends React.Component {
                             )
                         }
                     </View>
-                    <View>
-                        <Button>OK</Button>
-                        <Button>NE-OK</Button>
+                    <View style={styles.buttons}>
+                        <TouchableOpacity style={styles.btn}>
+                            <Image source={DOWN} style={styles.btnImg} />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.btn}>
+                            <Image source={UP} style={styles.btnImg} />
+                        </TouchableOpacity>
                     </View>
                 </Container>
             </Page>
@@ -134,7 +141,30 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'flex-start',
         backgroundColor: 'transparent',
-    }
+    },
+    buttons: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        width: 241,
+        justifyContent: 'space-between',
+        marginBottom: 20,
+    },
+    btn: {
+        height: 87,
+        width: 87,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Colors.white,
+        borderRadius: 87 / 2,
+        shadowColor: 'rgba(0, 0, 0, 0.05)',
+        shadowOffset: { width: 2, height: 2 },
+        borderWidth: 1,
+        borderColor: Colors.borderGray,
+    },
+    btnImg: {
+        height: 37,
+        width: 37,
+    },
 })
 
 export default HomeScreen

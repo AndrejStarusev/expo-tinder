@@ -34,4 +34,12 @@ export default StyleSheet.create({
         lineHeight: 29,
         color: Colors.blackText,
     },
+    pSmall: {
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: 10,
+        lineHeight: 12,
+        color: Colors.grayText,
+        textTransform: 'uppercase',
+    }
 });
