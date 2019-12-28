@@ -5,7 +5,6 @@ import { Button, Text } from 'react-native-elements'
 import { Card } from '../components/Card'
 import Storage, { Frustrations } from '../firebase';
 import Container from '../components/Container';
-import CartBlock from '../components/CartBlock';
 import Page from '../components/Page';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout'
@@ -80,7 +79,6 @@ class HomeScreen extends React.Component {
                             )
                         }
                     </View>
-                    {/* <CartBlock answers={[{isProblem: true}, {isProblem: false}]} /> */}
                     <View style={styles.buttons}>
                         <TouchableOpacity style={styles.btn}>
                             <Image source={DOWN} style={styles.btnImg} />

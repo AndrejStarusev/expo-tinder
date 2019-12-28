@@ -25,9 +25,10 @@ export default function Chart (props) {
     const color = progress > 50 ? '#FE5B61' : '#4DA5FF';
 
     return (
-        <View style={styles.wrap}>
+        <View style={[styles.wrap, props.style]}>
             <Text style={[Typography.p ,styles.text]}>Hardness based on <Text style={{ color: '#A0A4A8' }}>{answers ? answers.length : 0} reviews</Text></Text>
             <View style={styles.chartWrap}>
+                <View style={styles.bg} />
                 <View style={[styles.progress, { width: `${progress}%`, backgroundColor: color }]} />
             </View>
         </View>
@@ -43,7 +44,16 @@ const styles = StyleSheet.create({
     },
     chartWrap: {
         width: '100%',
+        borderRadius: 4,
+        height: 8,
+    },
+    bg: {
         backgroundColor: '#99CBFF',
+        opacity: 0.2,
+        position: 'absolute',
+        flex: 1,
+        height: '100%',
+        width: '100%',
         borderRadius: 4,
     },
     progress: {

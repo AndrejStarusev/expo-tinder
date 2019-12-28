@@ -7,6 +7,7 @@ import { getImageByDisappointment } from '../helpers/problem';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 import Typography from '../styles/typography';
+import CartBlock from '../components/CartBlock';
 
 import backIcon from '../assets/images/back.png';
 import bgMain from '../assets/images/bg-main.png';
@@ -27,7 +28,7 @@ export default class ViewProblem extends React.Component {
         if (id) {
             const problem = await Storage.getProblemById(id);
             const answers = await Storage.getAnswersByProblem(id);
-            console.log('answers', answers);
+
             this.setState({ problem, answers });
         }
     }
@@ -54,6 +55,8 @@ export default class ViewProblem extends React.Component {
                             {problem && <Image source={getImageByDisappointment(problem.disappointment)} style={styles.image} />}
                             <Text style={[Typography.h2, styles.heading]}>{problem && problem.title}</Text>
                             <Text style={[Typography.p]}>{problem && problem.description}</Text>
+
+                            <CartBlock answers={answers} style={styles.chart} />
                         </View>
                     </View>
                 </View>
@@ -70,6 +73,7 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingLeft: 30,
         paddingRight: 30,
+        position: 'relative',
     },
     headerNav: {
         width: '100%',
@@ -130,5 +134,20 @@ const styles = StyleSheet.create({
     heading: {
         marginBottom: 16,
         color: Colors.blackText,
+    },
+    human: {
+        marginRight: 12,
+        height: 22,
+        width: 17,
+    },
+    postTime: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 8,
+    },
+    chart: {
+        position: 'absolute',
+        bottom: 48,
+        left: 24,
     },
 });

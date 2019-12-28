@@ -12,7 +12,7 @@ export default class Page extends React.Component {
         return (
             <View style={[styles.page, this.props.style]}>
                 {withBg && <Image source={BG} style={styles.bg} />}
-                {withNotch && <Image source={Notch} style={[styles.notch, { top: notchOffset }]} />}
+                {withNotch && <Image source={Notch} style={[styles.notch, { top: notchOffset || 0 }]} />}
 
                 {this.props.children}
             </View>

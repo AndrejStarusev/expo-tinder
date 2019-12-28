@@ -67,7 +67,7 @@ export default class Problem extends React.Component {
         const { problem, error, answers } = this.state;
 
         return (
-            <Page style={{ backgroundColor: '#fff' }}>
+            <Page style={{ backgroundColor: '#fff' }} withNotch notchOffset={-65}>
                 <Container>
                     <View style={styles.headerNav}>
                         <TouchableOpacity style={styles.btnBack}>
