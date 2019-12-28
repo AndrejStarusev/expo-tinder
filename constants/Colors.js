@@ -17,5 +17,6 @@ export default {
   blackText: '#25282B',
   white: '#fff',
   purple: '#9B63F8',
+  bgProfile: '#809FFC',
   borderGray: '#E6E6E6',
 };

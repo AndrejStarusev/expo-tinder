@@ -14,6 +14,6 @@ export default createAppContainer(createSwitchNavigator(
     Profile: Profile,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Profile',
   },
 ));
