@@ -27,4 +27,11 @@ export default StyleSheet.create({
         fontSize: 17,
         lineHeight: 20,
     },
+    h2: {
+        fontStyle: 'normal',
+        fontWeight: '600',
+        fontSize: 24,
+        lineHeight: 29,
+        color: Colors.blackText,
+    },
 });
