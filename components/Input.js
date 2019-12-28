@@ -25,6 +25,8 @@ export default class Input extends React.Component {
                 textContentType={props.textContentType}
                 secureTextEntry={props.secureTextEntry}
                 placeholder={props.placeholder}
+                autoCapitalize={props.autoCapitalize}
+                onChangeText={props.onChangeText}
             />
         )
     }

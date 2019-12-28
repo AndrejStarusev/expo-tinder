@@ -20,6 +20,7 @@ export default class LogIn extends React.Component {
 
     tryToLogin = async () => {
         const { email, password, err } = this.state;
+        console.log('tryToLogin', email, password);
 
         if (err) {
             this.setState({ err: '' });
