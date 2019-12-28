@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Image, TextInput } from 'react-native'
+import { StyleSheet, View, Image } from 'react-native'
 import { Button, Text } from 'react-native-elements'
 import Firebase from '../firebase';
 import CommonStyles from '../styles/common';
