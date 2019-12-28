@@ -1,11 +1,13 @@
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import React from 'react'
-import { StatusBar, StyleSheet, View } from 'react-native'
+import { StatusBar, StyleSheet, View, YellowBox } from 'react-native'
 import { observer } from 'mobx-react';
 import AppNavigator from './navigation/AppNavigator';
 import Storage from './firebase';
 import Preloader from './components/Preloader';
 
+YellowBox.ignoreWarnings = true;
+console.disableYellowBox = true;
 
 @observer
 export default class App extends React.Component {
