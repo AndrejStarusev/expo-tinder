@@ -9,13 +9,13 @@ import ViewProblem from '../screens/ViewProblem'
 
 export default createAppContainer(createSwitchNavigator(
   {
-    LogIn: LogIn,
-    Home: HomeScreen,
-    Problem: Problem,
-    Profile: Profile,
-    ViewProblem: ViewProblem,
+    LogIn: { screen: LogIn },
+    Home: { screen: HomeScreen },
+    Problem: { screen: Problem },
+    Profile: { screen: Profile },
+    ViewProblem: { screen: ViewProblem },
   },
   {
-    initialRouteName: 'Problem',
+    initialRouteName: 'LogIn',
   },
 ));

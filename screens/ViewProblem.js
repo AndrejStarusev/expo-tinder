@@ -13,7 +13,9 @@ import backIcon from '../assets/images/back.png';
 import bgMain from '../assets/images/bg-main.png';
 import LOGO from '../assets/images/logo-black.png';
 import Plus from '../assets/images/plus-purple.png';
+import { observer } from 'mobx-react';
 
+@observer
 export default class ViewProblem extends React.Component {
 
     state = {
@@ -26,8 +28,8 @@ export default class ViewProblem extends React.Component {
         const id = navigation.getParam('id');
 
         if (id) {
-            const problem = await Storage.getProblemById(id);
-            const answers = await Storage.getAnswersByProblem(id);
+            const problem = Storage.problems.find(p => p.id === id);
+            const answers = Storage.getAnswersByProblem(id);
 
             this.setState({ problem, answers });
         }
@@ -41,7 +43,7 @@ export default class ViewProblem extends React.Component {
                 <View style={styles.problemWrap}>
                     <View style={styles.container}>
                         <View style={styles.headerNav}>
-                            <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.goBack()}>
+                            <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.navigate('Profile')}>
                                 <Image source={backIcon} style={styles.backIcon} />
                             </TouchableOpacity>
 

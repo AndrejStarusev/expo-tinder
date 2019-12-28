@@ -15,24 +15,12 @@ import Plus from '../assets/images/plus-purple.png';
 import Arrow from '../assets/images/left-arrow.png';
 import UP from '../assets/images/thumbs-up.png';
 import DOWN from '../assets/images/thumbs-down.png';
+import { observer } from 'mobx-react'
 
+@observer
 class HomeScreen extends React.Component {
-    state = {
-        cards: [],
-    }
-
-    async componentDidMount() {
-        const problems = await Storage.getProblems();
-
-        console.log('___problems', problems);
-
-        if (problems) {
-            this.setState({ cards: problems });
-        }
-    }
-
     afterSwipe = async (index, isProblem) => {
-        const { cards } = this.state;
+        const cards = Storage.problems;
         const problem = cards[index];
         console.log('afterSwipe', index, isProblem);
 
@@ -44,7 +32,6 @@ class HomeScreen extends React.Component {
     }
 
     render() {
-        const { cards } = this.state;
 
         return (
             <Page style={styles.mainContainer} withBg>
@@ -56,15 +43,15 @@ class HomeScreen extends React.Component {
 
                         <Image source={LOGO} style={styles.logo} />
 
-                        <View style={styles.plusWrap}>
+                        <TouchableOpacity style={styles.plusWrap} onPress={() => this.props.navigation.navigate('Problem')}>
                             <Image source={Plus} style={styles.plus} />
-                        </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.swiperWrap}>
                         {
-                            !!cards && (
+                            !!Storage.problems && (
                                 <Swiper
-                                    cards={cards}
+                                    cards={Storage.problems}
                                     renderCard={Card}
                                     infinite
                                     backgroundColor="transparent"

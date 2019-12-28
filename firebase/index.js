@@ -44,13 +44,24 @@ class App {
     @observable
     loading = false;
 
+    @observable
+    answers;
+
+    @observable
+    problems;
+
     constructor() {
         this.init();
     }
 
-    init() {
+    async init() {
         firebase.initializeApp(firebaseConfig);
         this.db = firebase.firestore();
+
+        this.loading = true;
+        await this.getAnswers();
+        await this.getAllProblems();
+        this.loading = false;
     }
 
     /**
@@ -71,22 +82,60 @@ class App {
      * @returns {Problem[]}
      */
     getProblems = async (uid) => {
+        // try {
+        //     this.loading = true;
+        //     const collection = this.db.collection('problems');
+        //     const spanshot = uid
+        //         ? await collection.where('creatorUID', '==', uid).get()
+        //         : await collection.get();
+    
+        //     const docs = spanshot && spanshot.docs;
+    
+        //     if (!docs) {
+        //         return [];
+        //     }
+    
+        //     return docs.map(d => ({ ...d.data(), id: d.id }));
+        // } finally {
+        //     this.loading = false;
+        // }
+
+        if (!this.problems) {
+            return [];
+        }
+
+        if (uid) {
+            return this.problems.filter(p => p.creatorUID === uid);
+        }
+
+        return this.problems;
+    }
+
+    getAllProblems = async () => {
         try {
-            this.loading = true;
-            const collection = this.db.collection('problems');
-            const spanshot = uid
-                ? await collection.where('creatorUID', '==', uid).get()
-                : await collection.get();
-    
-            const docs = spanshot && spanshot.docs;
-    
-            if (!docs) {
-                return [];
-            }
-    
-            return docs.map(d => ({ ...d.data(), id: d.id }));
+            // this.loading = true;
+
+            this.db.collection('problems').onSnapshot(async sn => {
+                const res = sn.docs;
+                this.problems = res.map(d => ({ ...d.data(), id: d.id }));
+                console.log('problems updatred', this.problems && this.problems.length);
+            });
         } finally {
-            this.loading = false;
+            // this.loading = false;
+        }
+    }
+
+    getAnswers = async () => {
+        try {
+            // this.loading = true;
+
+            this.db.collection('answers').onSnapshot(async sn => {
+                const res = sn.docs;
+                this.answers = res.map(d => ({ ...d.data(), id: d.id }))
+                console.log('answers updatred', this.answers && this.answers.length);
+            });
+        } finally {
+            // this.loading = false;
         }
     }
 
@@ -95,15 +144,15 @@ class App {
      * @returns {Problem}
      */
     getProblemById = async (id) => {
-        this.loading = true;
-        try {
-            const collection = this.db.collection('problems');
-            const spanshot = await collection.doc(id).get();
+        // this.loading = true;
+        // try {
+        //     const collection = this.db.collection('problems');
+        //     const spanshot = await collection.doc(id).get();
     
-            return spanshot.data();
-        } finally {
-            this.loading = false;
-        }
+        //     return spanshot.data();
+        // } finally {
+        //     this.loading = false;
+        // }
     }
 
     login = async (email, pass) => {
@@ -128,7 +177,7 @@ class App {
             return;
         }
 
-        this.loading = true;
+        // this.loading = true;
 
         const collection = this.db.collection('answers');
         answer.fromUID = this.uid;
@@ -138,30 +187,16 @@ class App {
         } catch (err) {
             console.log('_____addAnswer error', err.message);
         } finally {
-            this.loading = false;
+            // this.loading = false;
         }
     }
 
-    getAnswersByProblem = async (problemId) => {
-        if (!problemId) {
-            return;
+    getAnswersByProblem = (problemId) => {
+        if (!this.answers) {
+            return null;
         }
 
-        this.loading = true;
-        try {
-            const collection = this.db.collection('answers');
-            const spanshot = await collection.where('problemID', '==', problemId).get();
-    
-            const docs = spanshot && spanshot.docs;
-    
-            if (!docs) {
-                return [];
-            }
-    
-            return docs.map(d => ({ ...d.data(), id: d.id }));
-        } finally {
-            this.loading = false;
-        }
+        return this.answers.filter(a => a.problemID === problemId);
     }
 }
 
