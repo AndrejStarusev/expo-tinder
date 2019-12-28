@@ -14,7 +14,7 @@ export default () => (
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        zIndex: 100,
+        zIndex: 1000,
         height: Layout.window.height,
         width: Layout.window.width,
         justifyContent: 'center',
@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
     layer: {
         height: Layout.window.height,
         width: Layout.window.width,
-        backgroundColor: 'gray',
-        opacity: 0.2,
+        backgroundColor: '#98A3F9',
         position: 'absolute',
         top: 0,
         left: 0,

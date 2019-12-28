@@ -14,7 +14,6 @@ import LOGO from '../assets/images/logo-gray.png';
 import Plus from '../assets/images/plus-purple.png';
 import UP from '../assets/images/thumbs-up.png';
 import DOWN from '../assets/images/thumbs-down.png';
-import BG from '../assets/images/home-bg.png';
 
 class HomeScreen extends React.Component {
     state = {
@@ -47,8 +46,7 @@ class HomeScreen extends React.Component {
         const { cards } = this.state;
 
         return (
-            <Page style={styles.mainContainer}>
-                {/* <Image source={BG} style={styles.bg} /> */}
+            <Page style={styles.mainContainer} withBg>
                 <Container style={styles.container}>
                     <View style={styles.headerNav}>
                         <TouchableOpacity style={styles.avatarWrap} onPress={() => this.props.navigation.navigate('Profile')}>
@@ -98,15 +96,6 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-    },
-    bg: {
-        height: Layout.window.height,
-        width: Layout.window.width,
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        right: 0,
-        bottom: 0,
     },
     container: {
         flex: 1,

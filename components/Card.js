@@ -27,12 +27,6 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         backgroundColor: Colors.white,
         height: Layout.window.height * 0.65,
-        borderWidth: 1,
-        borderColor: Colors.borderGray,
-        shadowColor: 'rgba(0, 0, 0, 0.05)',
-        shadowOffset: { width: 2, height: 2 },
-        shadowRadius: 7,
-        elevation: 5,
         padding: 32,
     },
     image: {

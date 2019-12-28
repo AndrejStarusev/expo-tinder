@@ -8,7 +8,7 @@ import Container from '../components/Container';
 import Page from '../components/Page';
 import Input from '../components/Input';
 
-import LOGO from '../assets/images/logo-black.png';
+import LOGO from '../assets/images/logo-white.png';
 import Colors from '../constants/Colors';
 
 export default class LogIn extends React.Component {
@@ -37,11 +37,11 @@ export default class LogIn extends React.Component {
     render() {
         const { err } = this.state;
         return (
-            <Page style={styles.page}>
+            <Page style={styles.page} withNotch>
                 <Container style={styles.container}>
                     <View style={styles.logoWrap}>
                         <Image source={ LOGO } style={styles.logo} />
-                        <Text style={[Typography.p, styles.subtitle]}>let's solve problems all together!</Text>
+                        <Text style={[Typography.pPurple, styles.subtitle]}>let's solve problems all together!</Text>
                     </View>
 
                     <View style={{ position: 'relative', width: '100%', marginBottom: 150 }}>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   page: {
       flex: 1,
-      paddingTop: 30,
+      paddingTop: 68,
   },
   container: {
       flex: 1,

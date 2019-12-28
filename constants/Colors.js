@@ -15,8 +15,9 @@ export default {
   grayBG: '#EFF3F7',
   grayText: '#97A0A9',
   blackText: '#25282B',
+  purpleText: '#D3D8FD',
   white: '#fff',
-  purple: '#9B63F8',
+  purple: '#787EF9',
   bgProfile: '#809FFC',
   borderGray: '#E6E6E6',
 };
