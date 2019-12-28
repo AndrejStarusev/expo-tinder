@@ -50,7 +50,6 @@ export default class Problem extends React.Component {
 
         try {
             await Storage.createProblem(problem);
-            alert('ok');
         } catch(err) {
             this.setState({ error: err.message });
         }

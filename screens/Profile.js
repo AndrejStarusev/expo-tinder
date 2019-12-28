@@ -31,7 +31,7 @@ export default class Profile extends React.Component {
     render() {
         return (
             <Page style={styles.mainContainer} withNotch>
-                <Container style={{ flex: 1}}>
+                <Container >
                     <View style={styles.headerNav}>
                         <TouchableOpacity style={styles.btnBack} onPress={() => this.props.navigation.navigate('Home')}>
                             <Image source={backIcon} style={styles.backIcon} />
